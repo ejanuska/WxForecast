@@ -239,19 +239,20 @@ public class WxForecast extends DefaultHandler {
 	           
 			   Matcher m = p.matcher( parsedCData );
 		       // if block ensures only data from CDATA section
-			   // is printed since its the only section with <br /> tags
+			   // is printed since its the only section with <br /> tags,
+			   // remove tag and print the rest.
 			   if ( m.find() == true ) {
 			      // Remove all <br /> tags
 			      String strOut = new String( m.replaceAll( "" ) );
-				  System.out.println( strOut );
+				  System.out.print( strOut );
 		       }
-			   
 			   // Some products do not contain <br /> tags
 			   // but contains a <pre> tag in CDATA section 
 			   m = p2.matcher( parsedCData );
 			   if ( m.find() == true ) {
-			      String strOut = new String( m.replaceAll( "" ) );
-				  System.out.println( strOut );
+			      // Remove <pre> tag and print the rest
+				  String strOut = new String( m.replaceAll( "" ) );
+				  System.out.print( strOut );
 			   }
             } // end characters()
          }; // End DefaultHandler handler = new DefaultHandler()
