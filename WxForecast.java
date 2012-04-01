@@ -70,7 +70,7 @@ public class WxForecast extends DefaultHandler {
 	       return;
 	    }
 	    break;
-	  case "-d":
+          case "-d":
 	     setUrl( "http://www.nhc.noaa.gov/xml/MIMATS.xml" );
 	     break;
 	  case "-n": // If no suffix provided default to "m", Miami
@@ -88,7 +88,7 @@ public class WxForecast extends DefaultHandler {
 	        return;
 	     }
 	     break;
-	  case "-r": // If no suffix provided default to "c", Central Carib
+          case "-r": // If no suffix provided default to "c", Central Carib
 	     if ( suffix.compareTo("c") == 0 || suffix == "" )
 	        setUrl( "http://www.nhc.noaa.gov/xml/STDCCA.xml" );
 	     if ( suffix.compareTo("e") == 0 )
@@ -96,20 +96,20 @@ public class WxForecast extends DefaultHandler {
 	     if ( suffix.compareTo("w") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/STDWCA.xml" );
 	     if ( suffix.compareTo( "c" ) != 0 &&
-	        suffix.compareTo( "e" ) != 0 &&
-	        suffix.compareTo( "w" ) != 0 && 
-		    suffix.compareTo( ""  ) != 0 ) {
+	          suffix.compareTo( "e" ) != 0 &&
+	          suffix.compareTo( "w" ) != 0 && 
+                  suffix.compareTo( ""  ) != 0 ) {
 	        System.out.println( "\nIncorrect parameter" );
 	        return;
 	     }
 	     break;
-      case "-a": // If no suffix provided default to "1"
+          case "-a": // If no suffix provided default to "1"
 	     if ( suffix.compareTo("1") == 0 || suffix == "" )
 	        setUrl( "http://www.nhc.noaa.gov/xml/PWSAT1.xml" );
 	     if ( suffix.compareTo("2") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/PWSAT2.xml" );
 	     if ( suffix.compareTo("3") == 0 )
-            setUrl( "http://www.nhc.noaa.gov/xml/PWSAT3.xml" );
+                setUrl( "http://www.nhc.noaa.gov/xml/PWSAT3.xml" );
   	     if ( suffix.compareTo("4") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/PWSAT4.xml" );
 	     if ( suffix.compareTo("5") == 0 )
@@ -119,7 +119,7 @@ public class WxForecast extends DefaultHandler {
 	        return;
 	     }
 	     break;
-      case "-p": // If no suffix provided default to "1"
+          case "-p": // If no suffix provided default to "1"
 	     if ( suffix.compareTo("1") == 0 || suffix == "" )
 	        setUrl( "http://www.nhc.noaa.gov/xml/PWSEP1.xml" );
 	     if ( suffix.compareTo("2") == 0 )
@@ -151,7 +151,7 @@ public class WxForecast extends DefaultHandler {
 	        return;
 	     }
 	     break;
-      case "-e": // If no suffix provided default to "1"
+          case "-e": // If no suffix provided default to "1"
 	     if ( suffix.compareTo("1") == 0 || suffix == "" )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCDEP1.xml" );
 	     if ( suffix.compareTo("2") == 0 )
@@ -176,21 +176,21 @@ public class WxForecast extends DefaultHandler {
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPAT3.xml" );
 	     if ( suffix.compareTo("4") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPAT4.xml" );
-         if ( suffix.compareTo("5") == 0 )
+             if ( suffix.compareTo("5") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPAT5.xml" );
 	     if ( isSuffixValid( suffix ) == false ) {
 	        System.out.println( "\nIncorrect parameter" );
 	        return;
 	     }
 	     break;
-	 case "-c": // If no suffix provided default to "1"
+          case "-c": // If no suffix provided default to "1"
 	     if ( suffix.compareTo("1") == 0 || suffix == "" )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPEP1.xml" );
 	     if ( suffix.compareTo("2") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPEP2.xml");
 	     if ( suffix.compareTo("3") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPEP3.xml" );
-    	 if ( suffix.compareTo("4") == 0 )
+    	     if ( suffix.compareTo("4") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPEP4.xml" );
 	     if ( suffix.compareTo("5") == 0 )
 	        setUrl( "http://www.nhc.noaa.gov/xml/TCPEP5.xml" );
@@ -202,15 +202,15 @@ public class WxForecast extends DefaultHandler {
 	  case "-m":
 	     System.out.println( this.manual() );
 	     return;
-      default:
+          default:
 	     System.out.println( "Invalid command. Use -m for manual" );
 	     return;
       } // End switch( cmd )
 	  
       try {
          SAXParserFactory factory = SAXParserFactory.newInstance();
-	     SAXParser saxParser = factory.newSAXParser();
-	     factory.setNamespaceAware( true );
+         SAXParser saxParser = factory.newSAXParser();
+         factory.setNamespaceAware( true );
 
          DefaultHandler handler = new DefaultHandler() {
  
@@ -221,39 +221,38 @@ public class WxForecast extends DefaultHandler {
             } // end startElement
 	
             // Called at the end of document element.
-	        public void endElement( String uri, String localName,
-	        String qName ) throws SAXException {
+            public void endElement( String uri, String localName,
+               String qName ) throws SAXException {
 	          // Nothing to do here since not specific elements are needed.
-	        }
+	    }
     
 	        // Called in between the start and end tags of an XML document element.
             public void characters( char ch[], int start, int length ) throws SAXException {
-
-			   final Pattern p = Pattern.compile( "<br />", Pattern.CASE_INSENSITIVE );
+   	       final Pattern p = Pattern.compile( "<br />", Pattern.CASE_INSENSITIVE );
                final Pattern p2 = Pattern.compile( "<pre>", Pattern.CASE_INSENSITIVE );
-	           // place all char into string builder
-	           StringBuilder data = new StringBuilder( );
-	           data.append( ch, start, length );
-	           // Put data into a string to edit out tags
-	           String parsedCData = new String( data.toString() );
+	       // place all char into string builder
+	       StringBuilder data = new StringBuilder( );
+	       data.append( ch, start, length );
+	       // Put data into a string to edit out tags
+	       String parsedCData = new String( data.toString() );
 	         
-	           Matcher m = p.matcher( parsedCData );
+	       Matcher m = p.matcher( parsedCData );
                // if block ensures only data from CDATA section
- 	           // is printed since its the only section with <br /> tags,
-	           // remove tag and print the rest.
-	           if ( m.find() == true ) {
-	              // Remove all <br /> tags
-	              String strOut = new String( m.replaceAll( "" ) );
-	              System.out.print( strOut );
+ 	       // is printed since its the only section with <br /> tags,
+	       // remove tag and print the rest.
+	       if ( m.find() == true ) {
+	          // Remove all <br /> tags
+	          String strOut = new String( m.replaceAll( "" ) );
+	          System.out.print( strOut );
                }
-	           // Some products do not contain <br /> tags
-	           // but contains a <pre> tag in CDATA section 
-	           m = p2.matcher( parsedCData );
-	           if ( m.find() == true ) {
-	              // Remove <pre> tag and print the rest
-	              String strOut = new String( m.replaceAll( "" ) );			  
-	              System.out.print( strOut );
-	           }
+	       // Some products do not contain <br /> tags
+	       // but contains a <pre> tag in CDATA section 
+	       m = p2.matcher( parsedCData );
+	       if ( m.find() == true ) {
+	          // Remove <pre> tag and print the rest
+	          String strOut = new String( m.replaceAll( "" ) );			  
+	          System.out.print( strOut );
+	       }
             } // end characters()
          }; // End DefaultHandler handler = new DefaultHandler()
 
@@ -271,34 +270,34 @@ public class WxForecast extends DefaultHandler {
             System.out.println( "Parse Error SAX Exception\n" );
          } // End try/catch block, parse
       } 
-	  catch ( Exception e ) {
-          System.out.println( "Exception occured in parser factory\n" );
-          e.printStackTrace();
+      catch ( Exception e ) {
+         System.out.println( "Exception occured in parser factory\n" );
+         e.printStackTrace();
       } // End try/catch block
    } // End action()
    
    public String manual() {
       return "Use parameters to retrieve various weather products from NWS.\n\n" +
       "-h a  Atlantic High Seas Forecast \n" +
- 	  "-h n  Northeast Pacific High Seas Forecast \n" +
-	  "-h s  Southeast Pacific High Seas Forecast \n\n" +
-	  "-d    Marine Weather Discussion \n\n" +
-	  "-n m  NAVTEX Marine Forecast (Miami, FL)  \n" +
-	  "-n j  NAVTEX Marine Forecast (San Juan, PR) \n" +
-	  "-n o  NAVTEX Marine Forecast (New Orleans, LA) \n\n" +
-	  "      Satellite Tropical Disturbance Rainfall Estimates \n" +
-	  "-r c  for Central Caribbean \n" +
-	  "-r e  for Eastern Caribbean\n" +
-	  "-r w  for Western Caribbean. \n\n" +
-	  "  When requesting the following products use number 1 - 5 as the \n" +
-	  "second parameter to retrieve wallets 1 through 5.\n" +
-	  "\n    ex: forecast -a 1\n\n" +
-	  "-a    Atlantic Wind Speed Probabilities Wallet 1 through 5 \n" +
-	  "-p    Pacific Wind Speed Probabilities Wallet 1 through 5 \n" +
-	  "-t    Atlantic Post-Tropical Cyclone Discussions 1 through 5 \n" +
-	  "-e    East Pacific Post-Tropical Cyclone Discussions 1 through 5 \n" +
-	  "-y    Atlantic Tropical Cyclone Position Estimate Wallets 1 through 5 \n" +
-	  "-c    East Pacific Tropical Cyclone Position Estimate Wallets 1 through 5 \n";
+      "-h n  Northeast Pacific High Seas Forecast \n" +
+      "-h s  Southeast Pacific High Seas Forecast \n\n" +
+      "-d    Marine Weather Discussion \n\n" +
+      "-n m  NAVTEX Marine Forecast (Miami, FL)  \n" +
+      "-n j  NAVTEX Marine Forecast (San Juan, PR) \n" +
+      "-n o  NAVTEX Marine Forecast (New Orleans, LA) \n\n" +
+      "      Satellite Tropical Disturbance Rainfall Estimates \n" +
+      "-r c  for Central Caribbean \n" +
+      "-r e  for Eastern Caribbean\n" +
+      "-r w  for Western Caribbean. \n\n" +
+      "  When requesting the following products use number 1 - 5 as the \n" +
+      "second parameter to retrieve wallets 1 through 5.\n" +
+      "\n    ex: forecast -a 1\n\n" +
+      "-a    Atlantic Wind Speed Probabilities Wallet 1 through 5 \n" +
+      "-p    Pacific Wind Speed Probabilities Wallet 1 through 5 \n" +
+      "-t    Atlantic Post-Tropical Cyclone Discussions 1 through 5 \n" +
+      "-e    East Pacific Post-Tropical Cyclone Discussions 1 through 5 \n" +
+      "-y    Atlantic Tropical Cyclone Position Estimate Wallets 1 through 5 \n" +
+      "-c    East Pacific Tropical Cyclone Position Estimate Wallets 1 through 5 \n";
    }
 		 
    private void setUrl( String u ) {
