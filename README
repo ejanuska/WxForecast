@@ -1,0 +1,14 @@
+
+This class uses the XML SAXParser to parse various hurricane weather forecasts from the National Weather Service (NWS). These products are updated during active hurricane events and may contain stale data outside of huuricane season. 
+
+Designed for use on command line/terminal use.
+
+Call action( LinkedList<String> ) to utilize WxForecast.
+
+The action( LinkedList<String> list ) method is called from the JavaConsole driver but can be used with any driver since there are no dependancies.
+   
+Parameters are passed in as two elements in a linked list. Any extra parameters are ignored. Incorrect command parameters will result in a call to the manual method.
+
+Missing second parameters (suffix) will return a default selection. Incorrect second parameters will result in a error message followed by a return.
+   
+The manual() method takes no parameters and returns a String containing usage information.
