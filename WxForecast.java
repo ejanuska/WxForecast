@@ -231,6 +231,7 @@ public class WxForecast extends DefaultHandler {
 
 			   final Pattern p = Pattern.compile( "<br />", Pattern.CASE_INSENSITIVE );
                final Pattern p2 = Pattern.compile( "<pre>", Pattern.CASE_INSENSITIVE );
+			   final Pattern p3 = Pattern.compile( "</pre>", Pattern.CASE_INSENSITIVE );
 	           // place all char into string builder
 	           StringBuilder data = new StringBuilder( );
 	           data.append( ch, start, length );
@@ -251,6 +252,13 @@ public class WxForecast extends DefaultHandler {
 	           m = p2.matcher( parsedCData );
 	           if ( m.find() == true ) {
 	              // Remove <pre> tag and print the rest
+	              String strOut = new String( m.replaceAll( "" ) );			  
+	              System.out.print( strOut );
+	           }
+			   // Remove </pre> tag if found
+			   m = p3.matcher( parsedCData );
+	           if ( m.find() == true ) {
+	              // Remove </pre> tag and print the rest
 	              String strOut = new String( m.replaceAll( "" ) );			  
 	              System.out.print( strOut );
 	           }
